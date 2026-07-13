@@ -34,41 +34,41 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 	});
 
 	// 友链
-	links.push(LinkPresets.Friends);
+	// links.push(LinkPresets.Friends);
 
 	// 留言板
-	links.push(LinkPresets.Guestbook);
+	// links.push(LinkPresets.Guestbook);
 
 	// 我的及其子菜单
-	links.push({
-		name: "我的",
-		url: "#",
-		icon: "material-symbols:person",
-		children: [
-			// 相册
-			LinkPresets.Gallery,
+	// links.push({
+	// 	name: "我的",
+	// 	url: "#",
+	// 	icon: "material-symbols:person",
+	// 	children: [
+	// 		// 相册
+	// 		LinkPresets.Gallery,
 
-			// 追番
-			LinkPresets.Anime,
+	// 		// 追番
+	// 		LinkPresets.Anime,
 
-			// 番组计划
-			LinkPresets.Bangumi,
-		],
-	});
+	// 		// 番组计划
+	// 		LinkPresets.Bangumi,
+	// 	],
+	// });
 
-	// 关于及其子菜单
-	links.push({
-		name: "关于",
-		url: "#",
-		icon: "material-symbols:info",
-		children: [
-			// 打赏
-			LinkPresets.Sponsor,
+	// // 关于及其子菜单
+	// links.push({
+	// 	name: "关于",
+	// 	url: "#",
+	// 	icon: "material-symbols:info",
+	// 	children: [
+	// 		// 打赏
+	// 		// LinkPresets.Sponsor,
 
-			// 关于页面
-			LinkPresets.About,
-		],
-	});
+	// 		// 关于页面
+	// 		LinkPresets.About,
+	// 	],
+	// });
 
 	// 自定义导航栏链接
 	links.push({
@@ -79,27 +79,27 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				url: "https://github.com/FnxAg",
 				external: true,
 				icon: "fa7-brands:github",
 			},
 			{
-				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
+				name: "Bilibili",
+				url: "https://space.bilibili.com/505144597",
 				external: true,
-				icon: "fa7-brands:gitee",
+				icon: "fa7-brands:bilibili",
 			},
 			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
+				name: "ntfy",
+				url: "https://fnxag.eu.org",
 				external: true,
-				icon: "fa7-brands:qq",
+				icon: "fa7-solid:link",
 			},
 			{
-				name: "Firefly文档",
-				url: "https://docs-firefly.cuteleaf.cn",
+				name: "OpenList",
+				url: "https://xane.eu.org",
 				external: true,
-				icon: "material-symbols:docs",
+				icon: "fa7-solid:link",
 			},
 		],
 	});

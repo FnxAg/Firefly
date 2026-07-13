@@ -6,35 +6,29 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "Firefly",
+	title: "FnxAg's Blog",
 
 	// 站点副标题
-	subtitle: "Demo site",
+	subtitle: "",
 
 	// 站点 URL
-	site_url: "https://firefly.cuteleaf.cn",
+	site_url: "https://blog.fnxag.eu.org",
 
 	// 站点描述
 	description:
-		"Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。",
+		"FnxAg's Blog",
 
 	// 站点关键词
 	keywords: [
-		"Firefly",
-		"Fuwari",
-		"Astro",
-		"ACGN",
 		"博客",
-		"技术博客",
-		"静态博客",
 	],
 
 	// 主题色
 	themeColor: {
 		// 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
-		hue: 165,
+		hue: 250,
 		// 是否对访问者隐藏主题色选择器
-		fixed: false,
+		fixed: true,
 		// 默认模式："light" 亮色，"dark" 暗色，"system" 跟随系统
 		defaultMode: "system",
 	},
@@ -49,7 +43,7 @@ export const siteConfig: SiteConfig = {
 		// 是否开启卡片边框和阴影，开启后让网站更有立体感
 		border: true,
 		// 是否让卡片风格跟随主题色相
-		followTheme: false,
+		followTheme: true,
 	},
 
 	// Favicon 配置
@@ -73,24 +67,24 @@ export const siteConfig: SiteConfig = {
 		// 3. 本地图片（src目录，自动优化但会增加构建时间）: { type: "image", value: "assets/images/logo.webp", alt: "Logo" }
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
-			type: "image",
-			value: "assets/images/firefly.png",
-			alt: "🍀",
+			type: "icon",
+			value: "material-symbols:home-outline",
+			alt: "Logo",
 		},
 		// 导航栏标题
-		title: "Firefly",
+		title: "FnxAg's Blog",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
 		menuAlign: "center",
 		// 导航栏图标和标题是否跟随主题色
-		followTheme: false,
+		followTheme: true,
 		// 导航栏是否固定在顶部并始终可见
-		stickyNavbar: true,
+		stickyNavbar: false,
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2025-01-01",
+	siteStartDate: "2026-07-12",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
@@ -99,24 +93,24 @@ export const siteConfig: SiteConfig = {
 	// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
 	pages: {
 		// 友链页面开关
-		friends: true,
+		friends: false,
 		// 打赏页面开关
-		sponsor: true,
+		sponsor: false,
 		// 留言板页面开关，需要配置评论系统
-		guestbook: true,
+		guestbook: false,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐
-		bangumi: true,
+		bangumi: false,
 		// 相册页面开关
-		gallery: true,
+		gallery: false,
 		// 追番页面开关
-		anime: true,
+		anime: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
-	categoryBar: true,
+	categoryBar: false,
 
 	// 归档页是否折叠非最新年份文章，禁用后默认展开全部年份
-	foldArticle: true,
+	foldArticle: false,
 
 	// 文章列表布局配置
 	postListLayout: {
@@ -145,9 +139,9 @@ export const siteConfig: SiteConfig = {
 			// 标签数量，设为 0 则不限制
 			tagCount: 5,
 			// 是否显示字数
-			showWords: false,
+			showWords: true,
 			// 是否显示阅读时间
-			showReadingTime: false,
+			showReadingTime: true,
 		},
 		// 底部 PostStats 统计信息显示控制
 		// 如果tagsPosition设置为"bottom"，则stats将不显示
@@ -181,7 +175,7 @@ export const siteConfig: SiteConfig = {
 		// 文章页底部的"上次编辑时间"卡片开关
 		showLastModified: true,
 		// 文章过期阈值（天数），超过此天数才显示"上次编辑"卡片
-		outdatedThreshold: 30,
+		outdatedThreshold: 180,
 		// 是否开启分享海报生成功能
 		sharePoster: true,
 		// OpenGraph图片功能，注意开启后要渲染很长时间，不建议本地调试的时候开启
@@ -191,7 +185,7 @@ export const siteConfig: SiteConfig = {
 	// bangumi配置
 	bangumi: {
 		// Bangumi用户ID
-		userId: "1143164",
+		userId: "",
 		// 数据模式：static=构建时获取，dynamic=客户端实时获取
 		// static 模式在构建时获取数据并静态渲染，部署后数据不更新
 		// dynamic 模式在浏览器中实时请求 API，始终显示最新数据
@@ -211,7 +205,7 @@ export const siteConfig: SiteConfig = {
 		// Bilibili 配置
 		bilibili: {
 			// 你的 Bilibili 用户 UID
-			uid: "38932988",
+			uid: "505144597",
 		},
 		// TMDB 配置（可选，需要翻墙）
 		// tmdb: {
