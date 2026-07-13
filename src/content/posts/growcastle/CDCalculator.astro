@@ -3,7 +3,8 @@ const characters: { name: string; baseCD: number }[] = [
   { name: "白袍", baseCD: 30 },
   { name: "黑袍", baseCD: 30 },
   { name: "青蛙", baseCD: 60 },
-  { name: "闹钟", baseCD: 60 },
+  { name: "闹钟（黄闹）", baseCD: 60 },
+  { name: "闹钟（蓝闹）", baseCD: 75 },
   { name: "修补（左）", baseCD: 100 },
   { name: "修补（右）", baseCD: 50 },
   { name: "魅魔", baseCD: 25 },
@@ -12,20 +13,25 @@ const characters: { name: string; baseCD: number }[] = [
   { name: "伊丽莎白（右）", baseCD: 30 },
   { name: "冰术士", baseCD: 20 },
   { name: "波塞冬", baseCD: 30 },
-  { name: "黄毛", baseCD: 25 },
-  { name: "绿叶", baseCD: 25 },
-  { name: "骨弓", baseCD: 25 },
-  { name: "冰法", baseCD: 25 },
-  { name: "电法", baseCD: 25 },
-  { name: "火法", baseCD: 25 },
+  { name: "三弓（黄毛、绿叶、骨弓）", baseCD: 25 },
+  { name: "三法（冰法、电法、火法）", baseCD: 25 },
   { name: "地震", baseCD: 25 },
   { name: "金币鼓", baseCD: 180 },
   { name: "牧师", baseCD: 30 },
-  { name: "小巨", baseCD: 30 },
-  { name: "投矛", baseCD: 30 },
+  { name: "四人召（小巨、投矛、骑士、天使）", baseCD: 30 },
   { name: "巫毒", baseCD: 30 },
   { name: "小炮", baseCD: 40 },
-  { name: "骑士", baseCD: 30 },
+  { name: "城墙", baseCD: 70 },
+  { name: "三女巫（自动召唤）", baseCD: 20 },
+  { name: "三女巫（技能召唤）", baseCD: 30 },
+  { name: "刺客", baseCD: 30 },
+  { name: "小飞机", baseCD: 30 },
+  { name: "风女", baseCD: 30 },
+  { name: "宙斯（被动技能）", baseCD: 8 },
+  { name: "宙斯（主动技能）", baseCD: 30 },
+  { name: "石巨人", baseCD: 30 },
+  { name: "盗贼", baseCD: 35 },
+  { name: "奇异石", baseCD: 25 },
 ];
 ---
 
@@ -73,10 +79,10 @@ const characters: { name: string; baseCD: number }[] = [
     <!-- 金C -->
     <label class="field">
       <span class="label-text">
-        金C 减 CD <code>C<sub>s</sub></code>
+        金C 数量 <code>C<sub>s</sub></code>
       </span>
       <input type="number" id="cd-cs" value="0" step="1" min="0" max="26" />
-      <span class="hint">金C 提供的总减 CD 数值</span>
+      <span class="hint">金C （包括蓝 C）的总数</span>
     </label>
 
     <!-- 是否站边白袍 -->
@@ -284,8 +290,8 @@ const characters: { name: string; baseCD: number }[] = [
     100% { transform: scale(1);    filter: brightness(1); }
   }
   @keyframes result-flash {
-    0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-    100% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+    0%   { box-shadow: 0 0 0 0 color-mix(in oklch, var(--_cd-accent) 40%, transparent); }
+    100% { box-shadow: 0 0 0 8px color-mix(in oklch, var(--_cd-accent) 0%, transparent); }
   }
   @keyframes dropdown-in {
     from { opacity: 0; transform: translateY(-8px) scaleY(0.95); }
@@ -294,22 +300,40 @@ const characters: { name: string; baseCD: number }[] = [
 
   /* ========== 容器 ========== */
   .cd-calculator {
+    /* Scoped theme-aware custom properties — light mode defaults */
+    --_cd-bg: var(--card-bg, #fff);
+    --_cd-bg2: var(--page-bg, #f8fafc);
+    --_cd-text: #1e293b;
+    --_cd-text2: rgba(0, 0, 0, 0.65);
+    --_cd-border: var(--line-divider, #e2e8f0);
+    --_cd-border-input: var(--line-color, #cbd5e1);
+    --_cd-accent: var(--primary, #3b82f6);
+    --_cd-code-bg: var(--inline-code-bg, #f1f5f9);
+    --_cd-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+
     margin: 2rem 0;
     padding: 1.25rem;
-    border: 1px solid var(--border-color, #e2e8f0);
+    border: 1px solid var(--_cd-border);
     border-radius: 0.5rem;
-    background: var(--bg-secondary, #f8fafc);
+    background: var(--_cd-bg2);
     animation: fade-slide-in 0.45s ease-out both;
+  }
+  /* Dark mode overrides */
+  :root.dark .cd-calculator {
+    --_cd-text: rgba(255, 255, 255, 0.87);
+    --_cd-text2: rgba(255, 255, 255, 0.55);
+    --_cd-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
   .cd-calculator h3 {
     margin: 0 0 0.5rem;
     font-size: 1.15rem;
+    color: var(--_cd-text);
     animation: fade-slide-in 0.45s 0.05s ease-out both;
   }
   .description {
     margin: 0 0 1rem;
     font-size: 0.875rem;
-    color: var(--text-secondary, #64748b);
+    color: var(--_cd-text2);
     animation: fade-slide-in 0.45s 0.1s ease-out both;
   }
   .description code { font-size: 0.8125rem; }
@@ -338,7 +362,7 @@ const characters: { name: string; baseCD: number }[] = [
   .label-text {
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-primary, #1e293b);
+    color: var(--_cd-text);
   }
   .label-text code { font-size: 0.8125rem; }
 
@@ -355,11 +379,11 @@ const characters: { name: string; baseCD: number }[] = [
     justify-content: space-between;
     width: 100%;
     padding: 0.375rem 0.5rem;
-    border: 1px solid var(--border-color, #cbd5e1);
+    border: 1px solid var(--_cd-border-input);
     border-radius: 0.375rem;
     font-size: 0.9375rem;
-    background: var(--bg-primary, #fff);
-    color: var(--text-primary, #1e293b);
+    background: var(--_cd-bg);
+    color: var(--_cd-text);
     cursor: pointer;
     transition:
       border-color 0.2s ease,
@@ -369,12 +393,12 @@ const characters: { name: string; baseCD: number }[] = [
     font-family: inherit;
   }
   .select-trigger:hover {
-    border-color: var(--accent-color, #3b82f6);
+    border-color: var(--_cd-accent);
   }
   .select-trigger:focus-visible {
     outline: none;
-    border-color: var(--accent-color, #3b82f6);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    border-color: var(--_cd-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--_cd-accent) 15%, transparent);
   }
 
   /* 触发器内容 */
@@ -392,14 +416,14 @@ const characters: { name: string; baseCD: number }[] = [
   }
   .trigger-content .char-cd {
     font-size: 0.8125rem;
-    color: var(--text-secondary, #94a3b8);
+    color: var(--_cd-text2);
     white-space: nowrap;
   }
 
   /* 箭头 */
   .chevron {
     flex-shrink: 0;
-    color: var(--text-secondary, #94a3b8);
+    color: var(--_cd-text2);
     transition: transform 0.25s ease;
     margin-left: 0.25rem;
   }
@@ -417,10 +441,8 @@ const characters: { name: string; baseCD: number }[] = [
     max-height: 0;
     overflow: hidden;
     border-radius: 0.375rem;
-    background: var(--bg-primary, #fff);
-    box-shadow:
-      0 10px 25px -5px rgba(0, 0, 0, 0.12),
-      0 0 0 1px rgba(0, 0, 0, 0.06);
+    background: var(--_cd-bg);
+    box-shadow: var(--_cd-shadow);
     opacity: 0;
     transform-origin: top center;
     transition:
@@ -448,7 +470,7 @@ const characters: { name: string; baseCD: number }[] = [
     cursor: pointer;
     font-family: inherit;
     font-size: 0.9375rem;
-    color: var(--text-primary, #1e293b);
+    color: var(--_cd-text);
     text-align: left;
     transition:
       background 0.12s ease,
@@ -466,15 +488,15 @@ const characters: { name: string; baseCD: number }[] = [
 
   .select-option:hover,
   .select-option.focused {
-    background: rgba(59, 130, 246, 0.08);
+    background: color-mix(in oklch, var(--_cd-accent) 8%, transparent);
   }
   .select-option.active {
-    background: rgba(59, 130, 246, 0.12);
-    color: var(--accent-color, #3b82f6);
+    background: color-mix(in oklch, var(--_cd-accent) 12%, transparent);
+    color: var(--_cd-accent);
     font-weight: 600;
   }
   .select-option.active .char-cd {
-    color: var(--accent-color, #3b82f6);
+    color: var(--_cd-accent);
     opacity: 0.7;
   }
 
@@ -483,31 +505,31 @@ const characters: { name: string; baseCD: number }[] = [
   }
   .select-option .char-cd {
     font-size: 0.8125rem;
-    color: var(--text-secondary, #94a3b8);
+    color: var(--_cd-text2);
     transition: color 0.12s ease;
   }
 
   /* ========== 输入控件通用 ========== */
   .field input[type="number"] {
     padding: 0.375rem 0.5rem;
-    border: 1px solid var(--border-color, #cbd5e1);
+    border: 1px solid var(--_cd-border-input);
     border-radius: 0.375rem;
     font-size: 0.9375rem;
-    background: var(--bg-primary, #fff);
-    color: var(--text-primary, #1e293b);
+    background: var(--_cd-bg);
+    color: var(--_cd-text);
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease,
       background 0.2s ease;
   }
   .field input[type="number"]:hover {
-    border-color: var(--accent-color, #3b82f6);
+    border-color: var(--_cd-accent);
   }
   .field input[type="number"]:focus {
     outline: none;
-    border-color: var(--accent-color, #3b82f6);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-    background: #fff;
+    border-color: var(--_cd-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--_cd-accent) 15%, transparent);
+    background: var(--_cd-bg);
   }
 
   /* 复选框 */
@@ -515,7 +537,7 @@ const characters: { name: string; baseCD: number }[] = [
     width: 1rem;
     height: 1rem;
     cursor: pointer;
-    accent-color: var(--accent-color, #3b82f6);
+    accent-color: var(--_cd-accent);
     transition: transform 0.15s ease;
   }
   .field input[type="checkbox"]:hover  { transform: scale(1.1); }
@@ -523,7 +545,7 @@ const characters: { name: string; baseCD: number }[] = [
 
   .hint {
     font-size: 0.75rem;
-    color: var(--text-secondary, #94a3b8);
+    color: var(--_cd-text2);
   }
 
   /* ========== 结果区域 ========== */
@@ -531,8 +553,8 @@ const characters: { name: string; baseCD: number }[] = [
     margin-top: 1.25rem;
     padding: 1rem;
     border-radius: 0.375rem;
-    background: var(--bg-primary, #fff);
-    border: 1px solid var(--accent-color, #3b82f6);
+    background: var(--_cd-bg);
+    border: 1px solid var(--_cd-accent);
     text-align: center;
     transition:
       box-shadow 0.3s ease,
@@ -544,13 +566,13 @@ const characters: { name: string; baseCD: number }[] = [
   }
   .result-label {
     font-size: 0.9375rem;
-    color: var(--text-secondary, #64748b);
+    color: var(--_cd-text2);
   }
   .result-value {
     display: inline-block;
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--accent-color, #3b82f6);
+    color: var(--_cd-accent);
     margin: 0 0.25rem;
   }
   .result-value.pulse {
@@ -558,17 +580,17 @@ const characters: { name: string; baseCD: number }[] = [
   }
   .result-unit {
     font-size: 0.9375rem;
-    color: var(--text-secondary, #64748b);
+    color: var(--_cd-text2);
   }
   .result-detail {
     margin-top: 0.5rem;
     font-size: 0.8125rem;
-    color: var(--text-secondary, #64748b);
+    color: var(--_cd-text2);
     line-height: 1.6;
     transition: opacity 0.12s ease;
   }
   .result-detail code {
-    background: var(--bg-secondary, #f1f5f9);
+    background: var(--_cd-code-bg);
     padding: 0.0625rem 0.25rem;
     border-radius: 0.25rem;
     font-size: 0.8125rem;
