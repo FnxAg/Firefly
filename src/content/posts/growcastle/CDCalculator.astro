@@ -1,0 +1,576 @@
+---
+const characters: { name: string; baseCD: number }[] = [
+  { name: "白袍", baseCD: 30 },
+  { name: "黑袍", baseCD: 30 },
+  { name: "青蛙", baseCD: 60 },
+  { name: "闹钟", baseCD: 60 },
+  { name: "修补（左）", baseCD: 100 },
+  { name: "修补（右）", baseCD: 50 },
+  { name: "魅魔", baseCD: 25 },
+  { name: "炸弹人", baseCD: 30 },
+  { name: "伊丽莎白（左）", baseCD: 20 },
+  { name: "伊丽莎白（右）", baseCD: 30 },
+  { name: "冰术士", baseCD: 20 },
+  { name: "波塞冬", baseCD: 30 },
+  { name: "黄毛", baseCD: 25 },
+  { name: "绿叶", baseCD: 25 },
+  { name: "骨弓", baseCD: 25 },
+  { name: "冰法", baseCD: 25 },
+  { name: "电法", baseCD: 25 },
+  { name: "火法", baseCD: 25 },
+  { name: "地震", baseCD: 25 },
+  { name: "金币鼓", baseCD: 180 },
+  { name: "牧师", baseCD: 30 },
+  { name: "小巨", baseCD: 30 },
+  { name: "投矛", baseCD: 30 },
+  { name: "巫毒", baseCD: 30 },
+  { name: "小炮", baseCD: 40 },
+  { name: "骑士", baseCD: 30 },
+];
+---
+
+<div class="cd-calculator">
+  <h3>CD 计算器</h3>
+  <p class="description">
+    公式：站边白袍时
+    <code>C = (C<sub>base</sub> ÷ (1.67 + C<sub>s</sub> &times; 0.025) − 1) × (1 − C<sub>ew</sub>) − C<sub>er</sub></code>
+    ；不站边时去掉「− 1」。
+  </p>
+
+  <div class="form-grid">
+    <!-- 角色选择（自定义下拉框） -->
+    <label class="field">
+      <span class="label-text">角色</span>
+      <div class="custom-select" id="cd-char-select">
+        <button type="button" class="select-trigger" id="cd-char-trigger">
+          <span class="trigger-content">
+            <span class="char-name">白袍</span>
+            <span class="char-cd">CD {characters[0]!.baseCD}s</span>
+          </span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="select-dropdown" id="cd-char-dropdown">
+          {characters.map((c) => (
+            <button type="button" class="select-option" data-value={c.baseCD} data-name={c.name}>
+              <span class="char-name">{c.name}</span>
+              <span class="char-cd">原始 CD: {c.baseCD}s</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </label>
+
+    <!-- 原始 CD（由下拉框自动填充，也可手动输入） -->
+    <label class="field">
+      <span class="label-text">
+        原始 CD <code>C<sub>base</sub></code>（秒）
+      </span>
+      <input type="number" id="cd-cbase" value="30" step="0.01" min="0" />
+    </label>
+
+    <!-- 金C -->
+    <label class="field">
+      <span class="label-text">
+        金C 减 CD <code>C<sub>s</sub></code>
+      </span>
+      <input type="number" id="cd-cs" value="0" step="1" min="0" max="26" />
+      <span class="hint">金C 提供的总减 CD 数值</span>
+    </label>
+
+    <!-- 是否站边白袍 -->
+    <label class="field checkbox-field">
+      <input type="checkbox" id="cd-white-robe" />
+      <span class="label-text">站边白袍（启用 − 1）</span>
+    </label>
+
+    <!-- 装备白CD -->
+    <label class="field">
+      <span class="label-text">
+        装备白 CD <code>C<sub>ew</sub></code>
+      </span>
+      <input type="number" id="cd-cew" value="0" step="0.1" min="0" max="50" />
+      <span class="hint">百分数形式，例如 15% 填 15</span>
+    </label>
+
+    <!-- 装备红CD -->
+    <label class="field">
+      <span class="label-text">
+        装备红 CD <code>C<sub>er</sub></code>（秒）
+      </span>
+      <input type="number" id="cd-cer" value="0" step="0.1" min="0" max="5" />
+    </label>
+  </div>
+
+  <!-- 计算结果 -->
+  <div class="result-area" id="cd-result-area">
+    <span class="result-label">面板 CD =</span>
+    <span class="result-value" id="cd-result">—</span>
+    <span class="result-unit">秒</span>
+    <div class="result-detail" id="cd-detail"></div>
+  </div>
+</div>
+
+<script>
+  const BASE = 1.67;
+
+  // ---- DOM refs ----
+  const charSelect = document.getElementById("cd-char-select")!;
+  const charTrigger = document.getElementById("cd-char-trigger")!;
+  const charDropdown = document.getElementById("cd-char-dropdown")!;
+  const charOptions = charDropdown.querySelectorAll<HTMLButtonElement>(".select-option");
+  const cbaseInput = document.getElementById("cd-cbase") as HTMLInputElement;
+  const csInput = document.getElementById("cd-cs") as HTMLInputElement;
+  const whiteRobeCheck = document.getElementById("cd-white-robe") as HTMLInputElement;
+  const cewInput = document.getElementById("cd-cew") as HTMLInputElement;
+  const cerInput = document.getElementById("cd-cer") as HTMLInputElement;
+  const resultEl = document.getElementById("cd-result")!;
+  const detailEl = document.getElementById("cd-detail")!;
+  const resultArea = document.getElementById("cd-result-area")!;
+
+  // ---- 自定义下拉框逻辑 ----
+  let isOpen = false;
+
+  function openDropdown() {
+    isOpen = true;
+    charSelect.classList.add("open");
+    charTrigger.setAttribute("aria-expanded", "true");
+    // 滚动到当前选中项
+    const active = charDropdown.querySelector<HTMLButtonElement>(".select-option.active");
+    if (active) {
+      active.scrollIntoView({ block: "nearest" });
+    }
+  }
+
+  function closeDropdown() {
+    isOpen = false;
+    charSelect.classList.remove("open");
+    charTrigger.setAttribute("aria-expanded", "false");
+  }
+
+  charTrigger.addEventListener("click", () => {
+    isOpen ? closeDropdown() : openDropdown();
+  });
+
+  // 选项点击
+  charOptions.forEach((opt) => {
+    opt.addEventListener("click", () => {
+      const val = opt.dataset.value!;
+      const name = opt.dataset.name!;
+
+      // 更新触发器显示
+      const triggerContent = charTrigger.querySelector(".trigger-content")!;
+      triggerContent.innerHTML = `
+        <span class="char-name">${name}</span>
+        <span class="char-cd">CD ${val}s</span>
+      `;
+
+      // 更新激活态
+      charOptions.forEach((o) => o.classList.remove("active"));
+      opt.classList.add("active");
+
+      // 更新 C_base 并计算
+      cbaseInput.value = val;
+      closeDropdown();
+      calc();
+    });
+  });
+
+  // 点击外部关闭
+  document.addEventListener("click", (e) => {
+    if (!charSelect.contains(e.target as Node)) {
+      closeDropdown();
+    }
+  });
+
+  // 键盘操作
+  charTrigger.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!isOpen) return openDropdown();
+
+      const current = charDropdown.querySelector<HTMLButtonElement>(".select-option.focused");
+      const opts = Array.from(charOptions);
+      let idx = current ? opts.indexOf(current) : -1;
+
+      if (e.key === "ArrowDown") idx = (idx + 1) % opts.length;
+      else idx = (idx - 1 + opts.length) % opts.length;
+
+      opts.forEach((o) => o.classList.remove("focused"));
+      opts[idx]!.classList.add("focused");
+      opts[idx]!.scrollIntoView({ block: "nearest" });
+    }
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      const focused = charDropdown.querySelector<HTMLButtonElement>(".select-option.focused");
+      if (isOpen && focused) {
+        (focused as HTMLButtonElement).click();
+      } else {
+        openDropdown();
+      }
+    }
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // ---- 计算逻辑 ----
+  function calc() {
+    const C_base = parseFloat(cbaseInput.value) || 0;
+    const C_s = parseInt(csInput.value) || 0;
+    const C_ew = parseFloat(cewInput.value) / 100 || 0;
+    const C_er = parseFloat(cerInput.value) || 0;
+    const isWhiteRobe = whiteRobeCheck.checked;
+
+    if (C_base <= 0) {
+      resultEl.textContent = "—";
+      detailEl.style.opacity = "0";
+      setTimeout(() => {
+        detailEl.textContent = "请选择角色或输入原始 CD";
+        detailEl.style.opacity = "1";
+      }, 120);
+      return;
+    }
+
+    const denominator = BASE + C_s * 0.025;
+    let step1 = C_base / denominator;
+    if (isWhiteRobe) step1 -= 1;
+    const step2 = step1 * (1 - C_ew);
+    const C = step2 - C_er;
+
+    resultEl.textContent = C.toFixed(2);
+    triggerPulse(resultEl);
+
+    resultArea.classList.remove("flash");
+    void (resultArea as HTMLElement).offsetWidth;
+    resultArea.classList.add("flash");
+
+    const robePart = isWhiteRobe ? ` − 1` : "";
+    detailEl.style.opacity = "0";
+    setTimeout(() => {
+      detailEl.innerHTML =
+        `<code>(${C_base} ÷ ${denominator.toFixed(2)}${robePart}) × (1 − ${C_ew}) − ${C_er}</code>` +
+        ` = <strong>${C.toFixed(4)} 秒</strong>`;
+      detailEl.style.opacity = "1";
+    }, 120);
+  }
+
+  function triggerPulse(el: HTMLElement) {
+    el.classList.remove("pulse");
+    void el.offsetWidth;
+    el.classList.add("pulse");
+  }
+
+  // ---- 事件绑定 ----
+  cbaseInput.addEventListener("input", calc);
+  csInput.addEventListener("input", calc);
+  whiteRobeCheck.addEventListener("change", calc);
+  cewInput.addEventListener("input", calc);
+  cerInput.addEventListener("input", calc);
+
+  // 初始化：激活第一个选项
+  charOptions[0]?.classList.add("active");
+  calc();
+</script>
+
+<style>
+  /* ========== 入场动画 ========== */
+  @keyframes fade-slide-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes result-pulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); filter: brightness(1.3); }
+    100% { transform: scale(1);    filter: brightness(1); }
+  }
+  @keyframes result-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    100% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  }
+  @keyframes dropdown-in {
+    from { opacity: 0; transform: translateY(-8px) scaleY(0.95); }
+    to   { opacity: 1; transform: translateY(0) scaleY(1); }
+  }
+
+  /* ========== 容器 ========== */
+  .cd-calculator {
+    margin: 2rem 0;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 0.5rem;
+    background: var(--bg-secondary, #f8fafc);
+    animation: fade-slide-in 0.45s ease-out both;
+  }
+  .cd-calculator h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    animation: fade-slide-in 0.45s 0.05s ease-out both;
+  }
+  .description {
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary, #64748b);
+    animation: fade-slide-in 0.45s 0.1s ease-out both;
+  }
+  .description code { font-size: 0.8125rem; }
+
+  /* ========== 表单 ========== */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem 1.25rem;
+    animation: fade-slide-in 0.45s 0.15s ease-out both;
+  }
+  @media (max-width: 500px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .field.checkbox-field {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+  .label-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary, #1e293b);
+  }
+  .label-text code { font-size: 0.8125rem; }
+
+  /* ========== 自定义下拉框 ========== */
+  .custom-select {
+    position: relative;
+    user-select: none;
+  }
+
+  /* 触发器 */
+  .select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
+    border: 1px solid var(--border-color, #cbd5e1);
+    border-radius: 0.375rem;
+    font-size: 0.9375rem;
+    background: var(--bg-primary, #fff);
+    color: var(--text-primary, #1e293b);
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+    text-align: left;
+    font-family: inherit;
+  }
+  .select-trigger:hover {
+    border-color: var(--accent-color, #3b82f6);
+  }
+  .select-trigger:focus-visible {
+    outline: none;
+    border-color: var(--accent-color, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  /* 触发器内容 */
+  .trigger-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .trigger-content .char-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .trigger-content .char-cd {
+    font-size: 0.8125rem;
+    color: var(--text-secondary, #94a3b8);
+    white-space: nowrap;
+  }
+
+  /* 箭头 */
+  .chevron {
+    flex-shrink: 0;
+    color: var(--text-secondary, #94a3b8);
+    transition: transform 0.25s ease;
+    margin-left: 0.25rem;
+  }
+  .custom-select.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* 下拉面板 */
+  .select-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    max-height: 0;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    background: var(--bg-primary, #fff);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    transform-origin: top center;
+    transition:
+      max-height 0.25s ease,
+      opacity 0.2s ease,
+      transform 0.2s ease;
+    transform: translateY(-8px) scaleY(0.95);
+  }
+  .custom-select.open .select-dropdown {
+    max-height: 16rem;
+    overflow-y: auto;
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+
+  /* 选项 */
+  .select-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0.625rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--text-primary, #1e293b);
+    text-align: left;
+    transition:
+      background 0.12s ease,
+      color 0.12s ease;
+  }
+  .select-option:first-child {
+    border-radius: 0.375rem 0.375rem 0 0;
+  }
+  .select-option:last-child {
+    border-radius: 0 0 0.375rem 0.375rem;
+  }
+  .select-option:only-child {
+    border-radius: 0.375rem;
+  }
+
+  .select-option:hover,
+  .select-option.focused {
+    background: rgba(59, 130, 246, 0.08);
+  }
+  .select-option.active {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--accent-color, #3b82f6);
+    font-weight: 600;
+  }
+  .select-option.active .char-cd {
+    color: var(--accent-color, #3b82f6);
+    opacity: 0.7;
+  }
+
+  .select-option .char-name {
+    font-weight: inherit;
+  }
+  .select-option .char-cd {
+    font-size: 0.8125rem;
+    color: var(--text-secondary, #94a3b8);
+    transition: color 0.12s ease;
+  }
+
+  /* ========== 输入控件通用 ========== */
+  .field input[type="number"] {
+    padding: 0.375rem 0.5rem;
+    border: 1px solid var(--border-color, #cbd5e1);
+    border-radius: 0.375rem;
+    font-size: 0.9375rem;
+    background: var(--bg-primary, #fff);
+    color: var(--text-primary, #1e293b);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+  .field input[type="number"]:hover {
+    border-color: var(--accent-color, #3b82f6);
+  }
+  .field input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent-color, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    background: #fff;
+  }
+
+  /* 复选框 */
+  .field input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: var(--accent-color, #3b82f6);
+    transition: transform 0.15s ease;
+  }
+  .field input[type="checkbox"]:hover  { transform: scale(1.1); }
+  .field input[type="checkbox"]:active { transform: scale(0.92); }
+
+  .hint {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #94a3b8);
+  }
+
+  /* ========== 结果区域 ========== */
+  .result-area {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background: var(--bg-primary, #fff);
+    border: 1px solid var(--accent-color, #3b82f6);
+    text-align: center;
+    transition:
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+    animation: fade-slide-in 0.45s 0.2s ease-out both;
+  }
+  .result-area.flash {
+    animation: result-flash 0.6s ease-out;
+  }
+  .result-label {
+    font-size: 0.9375rem;
+    color: var(--text-secondary, #64748b);
+  }
+  .result-value {
+    display: inline-block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent-color, #3b82f6);
+    margin: 0 0.25rem;
+  }
+  .result-value.pulse {
+    animation: result-pulse 0.35s ease-out;
+  }
+  .result-unit {
+    font-size: 0.9375rem;
+    color: var(--text-secondary, #64748b);
+  }
+  .result-detail {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary, #64748b);
+    line-height: 1.6;
+    transition: opacity 0.12s ease;
+  }
+  .result-detail code {
+    background: var(--bg-secondary, #f1f5f9);
+    padding: 0.0625rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+  }
+</style>
