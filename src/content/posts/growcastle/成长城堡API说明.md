@@ -6,6 +6,7 @@ description: "自建 API 的使用说明"
 tags: ["成长城堡", "Grow Castle", "API"]
 category: 成长城堡
 draft: false
+slug: api-introduction
 ---
 
 # 前言

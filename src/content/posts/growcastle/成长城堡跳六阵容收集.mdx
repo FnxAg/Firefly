@@ -6,6 +6,7 @@ description: "跳六阵容的收集，作为阵容构建的参考"
 tags: ["成长城堡", "Grow Castle", "攻略"]
 category: 成长城堡
 draft: false
+slug: dh5-build-collection
 ---
 
 export const ratio = (totalWaves, level) =>
@@ -48,6 +49,17 @@ export const heroGold = (level) => {
 
 export const buildRatio = (totalWaves, totalGold) =>
   (totalGold / (totalWaves ** 2)).toFixed(2);
+
+export const teacher_coke = {
+  totalWaves: 9274547,
+  castle: 435000,
+  ta: 1486000,
+  goblin: 470500,
+  angel: 100000,
+  succubus: 360010,
+  slingers: 60000,
+  elizabeth: 410000,
+}
 
 export const erecnisnI = {
   totalWaves: 6280000,
@@ -98,15 +110,65 @@ export const rb_mana = {
   .eq-g   { color: #a4c35a; }
 `}</style>
 
+# Teacher coke - 白袍的绝对压制
+
+- 发布日期：2026-07-14
+
+- 收录日期：2026-07-14
+
+## 阵容图
+
+![Teacher coke 阵容图](images/teacher_coke_build.png)
+
+## 角色装备与属性
+
+> [!WARNING] 警告
+> 该阵容中的金 C 数量为 23 + 1，请知悉。
+
+|单位|面板|武器|饰品|
+|:----:|:----:|:----:|:----:|
+|白袍|CD: 5.36|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.2%</span> -> <span class="eq-y">11.3%</span><br/>FIRE DAMAGE <span class="eq-g">+24.6%</span> -> <span class="eq-y">30.1%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> <span class="eq-w">-></span> <span class="eq-y">2.3</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +22.6%</span></span>|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.7%</span> -> <span class="eq-y">12.1%</span><br/>LIGHTNING DAMAGE <span class="eq-g">+22.8%</span> -> <span class="eq-y">28.5%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-2.0</span> <span class="eq-w">-></span> <span class="eq-y">2.5</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +24.9%</span><br/><span class="eq-b">COOLDOWN SKILL LV +1<br/>CRITICAL CHANCE SKILL LV +1</span></span>|
+|城弓|CD: 8.81|<span class="eq-bg"><span class="eq-w">DAMAGE <span class="eq-g">+19.9%</span><br/>DAMAGE <span class="eq-g">+18.9%</span></span><br/><span class="eq-b">OWN BONUS GOLD +3.3%<br/>OWN BONUS GOLD +3.2%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+48.4%</span><br/>DAMAGE <span class="eq-g">+18.6%</span><br/>CRITICAL DAMAGE <span class="eq-g">+46.9%</span></span><br/><span class="eq-y">DAMAGE SKILL LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>ATTACK SPEED +9.8%</span></span>|
+|炸弹人|CD: 10.04|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+47.0%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.6%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> SECONDS</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">TNT DAMAGE +48%<br/>ATTACK SPEED +9.9%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+46.8%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.3%</span><br/>COOLDOWN <span class="eq-g">-9.4%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">OWN BONUS GOLD +3.9%<br/>OWN BONUS GOLD +4.0%</span></span>|
+|魅魔|CD: 11.01|<span class="eq-bg"><span class="eq-w">ATTACK SPEED <span class="eq-g">+18.5%</span><br/>CRITICAL CHANCE <span class="eq-g">+10.0%</span><br/>CRITICAL CHANCE <span class="eq-g">+10.0%</span></span><br/><span class="eq-b">ATTACK SPEED +9.6%<br/>ATTACK SPEED +9.9%</span></span>|<span class="eq-bg"><span class="eq-w">ATTACK SPEED <span class="eq-g">+18.0%</span><br/>ATTACK SPEED <span class="eq-g">+18.2%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.0%</span></span><br/><span class="eq-y">BONUS SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.6%<br/>ATTACK SPEED +9.8%</span></span>|
+|伊丽莎白|CD: 5.27<br/>蓝耗: 0|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.8%</span><br/>COOLDOWN <span class="eq-g">-9.7%</span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-2.0</span> SECONDS</span></span><br/><span class="eq-y">POISON MASTERY SKILL LV +1</span><br/><span class="eq-b">KRAKEN +2<br/>9.9% CHANCE TO SUMMON A KRAKEN<br/>ON ATTACK.</span></span>|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.3%</span> -> <span class="eq-y">11.4%</span><br/>DAMAGE <span class="eq-g">+18.2%</span> -> <span class="eq-y">22.3%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> <span class="eq-w">-></span> <span class="eq-y">2.4</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +22.5%</span><br/><span class="eq-b">OWN BONUS GOLD +4.0%</span></span>|
+|天使|CD: 10.74|<span class="eq-bg"><span class="eq-w">STUN CHANCE <span class="eq-g">+19.0%</span><br/>COOLDOWN <span class="eq-g">-9.2%</span></span><br/><span class="eq-r">DAMAGE REDUCED BY <span class="eq-g">+23%</span><br/>(LEADER, SUMMONER ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">SUMMONED HP +9.8%</span></span>|<span class="eq-bg"><span class="eq-w">FIRE DAMAGE <span class="eq-g">+23.5%</span><br/>COOLDOWN <span class="eq-g">-9.5%</span></span><br/><span class="eq-r">DAMAGE REDUCED BY <span class="eq-g">+25%</span><br/>(LEADER, SUMMONER ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">SKILL DURATION +0.14</span></span>|
+|青蛙|CD: 14.91<br/>蓝耗: 4.4%|双白金 C|双白加强|
+|黑袍|CD: 8.70|红白金 C|红金 C|
+|奇异石|CD: 8.93|金 G|双白金 C|
+|投矛|CD: 11.97|击晕、减速、金 C|击晕、减速、白金 C|
+|骨弓|CD: 4.59|红白金 C|红白、金 G|
+
+
+## 结算面板
+
+![Teacher coke 总伤害结算](images/teacher_coke_analysis_1.png) ![Teacher coke BOSS伤害结算](images/teacher_coke_analysis_2.png)
+
+## 指数分析
+
+|总波数|指数|
+|:----:|:----:|
+|{teacher_coke.totalWaves.toLocaleString()}|{buildRatio(teacher_coke.totalWaves, castleGold(teacher_coke.castle) + taGold(teacher_coke.ta) + heroGold(teacher_coke.goblin) + heroGold(teacher_coke.angel) + heroGold(teacher_coke.succubus) + heroGold(teacher_coke.slingers) + heroGold(teacher_coke.elizabeth))}|
+
+| 单位     | 等级                                 | 比例                                           |
+| -------- | ------------------------------------ | ---------------------------------------------- |
+|城堡     | {teacher_coke.castle.toLocaleString()}    | {ratio(teacher_coke.totalWaves, teacher_coke.castle)}    |
+|城弓     | {teacher_coke.ta.toLocaleString()} | {ratio(teacher_coke.totalWaves, teacher_coke.ta)} |
+|炸弹人   | {teacher_coke.goblin.toLocaleString()}    | {ratio(teacher_coke.totalWaves, teacher_coke.goblin)}    |
+|天使     | {teacher_coke.angel.toLocaleString()}      | {ratio(teacher_coke.totalWaves, teacher_coke.angel)}      |
+|魅魔     | {teacher_coke.succubus.toLocaleString()}  | {ratio(teacher_coke.totalWaves, teacher_coke.succubus)}  |
+|投矛     | {teacher_coke.slingers.toLocaleString()}  | {ratio(teacher_coke.totalWaves, teacher_coke.slingers)}  |
+|伊丽莎白  | {teacher_coke.elizabeth.toLocaleString()}  | {ratio(teacher_coke.totalWaves, teacher_coke.elizabeth)}  |
+
 # erecnisnI - 城弓、魅魔、冰术士、黄毛、毒领
 
-来源：[@erecnisnI](https://www.youtube.com/@erecnisnI)
+- 来源：[@erecnisnI](https://www.youtube.com/@erecnisnI)
 
-视频链接：[YouTube](https://www.youtube.com/watch?v=OolVm2TtfN0)
+- 视频链接：[YouTube](https://www.youtube.com/watch?v=OolVm2TtfN0)
 
-发布日期：2026-06-22
+- 发布日期：2026-06-22
 
-收录日期：2026-07-14
+- 收录日期：2026-07-14
 
 <iframe width="100%" height="468"
   src="https://www.youtube.com/embed/OolVm2TtfN0"
@@ -157,13 +219,13 @@ export const rb_mana = {
 
 # AD_DizzyDreamz - 城弓、火风女、炸弹人、魅魔、宙斯
 
-来源：[@LakuJK](https://www.youtube.com/@LakuJK)
+- 来源：[@LakuJK](https://www.youtube.com/@LakuJK)
 
-视频链接：[YouTube](https://www.youtube.com/watch?v=nrkbBOHL7lc)
+- 视频链接：[YouTube](https://www.youtube.com/watch?v=nrkbBOHL7lc)
 
-发布日期：2026-04-04
+- 发布日期：2026-04-04
 
-收录日期：2026-07-14
+- 收录日期：2026-07-14
 
 <iframe width="100%" height="468"
   src="https://www.youtube.com/embed/nrkbBOHL7lc"
@@ -213,13 +275,13 @@ export const rb_mana = {
 
 # RB_Mana - 纯英
 
-来源：[@RedBridgeXgc](https://www.youtube.com/@RedBridgeXgc)
+- 来源：[@RedBridgeXgc](https://www.youtube.com/@RedBridgeXgc)
 
-视频链接：[YouTube](https://www.youtube.com/watch?v=NR1syRGBlik)
+- 视频链接：[YouTube](https://www.youtube.com/watch?v=NR1syRGBlik)
 
-发布日期：2026-06-30
+- 发布日期：2026-06-30
 
-收录日期：2026-07-14
+- 收录日期：2026-07-14
 
 <iframe width="100%" height="468"
   src="https://www.youtube.com/embed/NR1syRGBlik"
