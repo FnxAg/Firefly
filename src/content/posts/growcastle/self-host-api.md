@@ -1,7 +1,7 @@
 ---
 title: 成长城堡 API 说明
-published: 2026-07-13
-pinned: true
+published: 2026-07-13 14:00:00
+pinned: false
 description: "自建 API 的使用说明"
 tags: ["成长城堡", "Grow Castle", "API"]
 category: 成长城堡

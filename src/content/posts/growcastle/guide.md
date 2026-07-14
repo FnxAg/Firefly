@@ -1,7 +1,7 @@
 ---
 title: 成长城堡游戏指南
 published: 2026-07-13
-pinned: true
+pinned: false
 description: "成长城堡基础介绍"
 tags: ["成长城堡", "Grow Castle", "指南"]
 category: 成长城堡

@@ -1,0 +1,265 @@
+---
+title: 成长城堡跳六阵容收集
+published: 2026-07-14
+pinned: true
+description: "跳六阵容的收集，作为阵容构建的参考"
+tags: ["成长城堡", "Grow Castle", "攻略"]
+category: 成长城堡
+draft: false
+---
+
+export const ratio = (totalWaves, level) =>
+  (totalWaves / level).toFixed(2);
+
+export const castleGold = (level) => 
+  level * level * 1250;
+
+export const taGold = (level) =>
+  level * level * 500;
+
+export const heroGold = (level) => {
+  if (level <= 0) return 0;
+
+  const thresholds = [
+    10000, 5000, 200, 180, 160, 140, 120, 100, 80, 60, 40, 20, 1,
+  ];
+  const baseGold = [
+    187458432500, 37468432500, 35632500, 26157500, 18530000, 12530000,
+    7997500, 4712500, 2475000, 1085000, 342500, 47500, 0,
+  ];
+  const baseMultiplier = [
+    50000000, 20000000, 600000, 450000, 360000, 280000, 210000, 150000,
+    100000, 60000, 30000, 10000, 250,
+  ];
+  const increment = [
+    5000, 4000, 3000, 2500, 2250, 2000, 1750, 1500, 1250, 1000, 750, 500, 250,
+  ];
+
+  for (let i = 0; i < thresholds.length; i++) {
+    if (level > thresholds[i]) {
+      const diff = level - thresholds[i];
+      return ((baseMultiplier[i] * 2 + increment[i] * (diff - 1)) / 2 * diff) +
+        baseGold[i];
+    }
+  }
+
+  return 0;
+};
+
+export const buildRatio = (totalWaves, totalGold) =>
+  (totalGold / (totalWaves ** 2)).toFixed(2);
+
+export const erecnisnI = {
+  totalWaves: 6280000,
+  castle: 180050,
+  ta: 777778,
+  archer: 220000,
+  angel: 90023,
+  iceSorceress: 223000,
+  paladins: 90020,
+  succubus: 240000,
+  slingers: 68010,
+  sara: 235020,
+  worm: 132233,
+}
+
+export const ad_dizzydreamz = {
+  totalWaves: 3112567,
+  castle: 222225,
+  ta: 600000,
+  goblin: 135000,
+  windy: 150000,
+  zeus: 135000,
+  succubus: 180000,
+  paladins: 44444,
+  slingers: 44444,
+  worm: 111111,
+}
+
+export const rb_mana = {
+  totalWaves: 28109000,
+  castle: 810000,
+  elizabeth: 1200000,
+  goblin: 1237000,
+  zeus: 1100000,
+  succubus: 1100000,
+  worm: 1170000,
+  paladins: 200000,
+  slingers: 100000,
+};
+
+<style>{`
+  td, th { vertical-align: middle; }
+  .eq-bg  { background: #62594a; display: inline-block; padding: 2px 6px; }
+  .eq-w   { color: #f9f7f6; }
+  .eq-r   { color: #d53d45; }
+  .eq-y   { color: #ecd133; }
+  .eq-b   { color: #58a6ff; }
+  .eq-g   { color: #a4c35a; }
+`}</style>
+
+# erecnisnI - 城弓、魅魔、冰术士、黄毛、毒领
+
+来源：[@erecnisnI](https://www.youtube.com/@erecnisnI)
+
+视频链接：[YouTube](https://www.youtube.com/watch?v=OolVm2TtfN0)
+
+发布日期：2026-06-22
+
+收录日期：2026-07-14
+
+<iframe width="100%" height="468"
+  src="https://www.youtube.com/embed/OolVm2TtfN0"
+  title="erecnisnI"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+## 阵容图
+
+![erecnisnI 阵容图](images/erecnisni_build.png)
+
+## 角色装备与属性
+
+|单位|面板|武器|饰品|
+|:----:|:----:|:----:|:----:|
+|白袍|CD: 5.88|红白 L|<span class="eq-bg"><span class="eq-w">FIRE DAMAGE <span class="eq-g">+22.5%</span> -> <span class="eq-y">28.0%</span><br/>COOLDOWN <span class="eq-g">-9.4%</span> -> <span class="eq-y">11.4%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> <span class="eq-w">-></span> <span class="eq-y">2.4</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +24.4%</span></span>|
+|城弓|CD: 8.62|<span class="eq-bg"><span class="eq-w">DAMAGE <span class="eq-g">+18.8%</span><br/>CRITICAL DAMAGE <span class="eq-g">+49.3%</span><br/>DAMAGE <span class="eq-g">+18.8%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>ATTACK SPEED +9.9%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+46.7%</span><br/>CRITICAL DAMAGE <span class="eq-g">+44.2%</span><br/>DAMAGE <span class="eq-g">+20.0%</span></span><br/><span class="eq-y">ARCHER SPD LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>ATTACK SPEED +9.8%</span></span>|
+|黄毛|CD: 10.77|<span class="eq-bg"><span class="eq-w">DAMAGE <span class="eq-g">+19.4%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.9%</span></span><br/><span class="eq-r">FLYING DAMAGE <span class="eq-g">+43%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>ATTACK SPEED +9.8%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+10.0%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.4%</span></span><br/><span class="eq-r"><span class="eq-g">+1</span> ARROW<br/>(ARCHER TYPE ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.7%<br/>ATTACK SPEED +9.9%</span></span>|
+|冰术士|CD: 2.33<br/>蓝耗: 0|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+47.4%</span> -> <span class="eq-y">58.8%</span><br/>COLD DAMAGE <span class="eq-g">+24.8%</span> -> <span class="eq-y">30.8%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> <span class="eq-w">-></span> <span class="eq-y">2.3</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +24.2%</span></span>|<span class="eq-bg"><span class="eq-w">COLD DAMAGE <span class="eq-g">+22.4%</span> -> <span class="eq-y">26.9%</span><br/>COOLDOWN <span class="eq-g">-9.7%</span> -> <span class="eq-y">11.7%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.7</span> <span class="eq-w">-></span> <span class="eq-y">2.1</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +20.3%</span><br/><span class="eq-b">CRITICAL CHANCE SKILL LV +1</span></span>|
+|魅魔|CD: 10.77|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+44.3%</span><br/>ATTACK SPEED <span class="eq-g">+18.6%</span></span><br/><span class="eq-r">BOSS DAMAGE <span class="eq-g">+48%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +10.0%<br/>ATTACK SPEED +10.0%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+48.0%</span> -> <span class="eq-y">58.7%</span><br/>ATTACK SPEED <span class="eq-g">+19.3%</span> -> <span class="eq-y">23.6%</span></span><br/><span class="eq-w">ATTACK SPEED <span class="eq-g">+19.7%</span> <span class="eq-w">-></span> <span class="eq-y">24.1%</span></span><br/><span class="eq-y">ITEM QUALITY +22.4%</span><br/><span class="eq-b">ATTACK SPEED +10.0%<br/>ATTACK SPEED +10.0%</span></span>|
+|毒领|CD: 4.31|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+49.9%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.6%</span></span><br/><span class="eq-r">BOSS DAMAGE <span class="eq-g">+49%</span></span><br/><span class="eq-y">BONUS GOLD SKILL LV +1</span><br/><span class="eq-b">POISONING DAMAGE STACKS +1<br/>POISONING DAMAGE STACKS +1</span></span>|<span class="eq-bg"><span class="eq-w">KNOCKBACK CHANCE <span class="eq-g">+19.3%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.0%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.0%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">POISONING DAMAGE STACKS +1</span></span>|
+|青蛙|CD: 17<br/>蓝耗: 5.8%|红白金 C|双白金 C|
+|骨弓|CD: 5.01|红白金 C|红白金 C|
+|天使|CD: 5.52|红白加强|红白金 C|
+
+## 结算面板
+
+![erecnisnI 总伤害结算](images/erecnisni_analysis_1.png) ![erecnisnI BOSS伤害结算](images/erecnisni_analysis_2.png)
+
+## 指数分析
+
+|总波数|指数|
+|:----:|:----:|
+|{erecnisnI.totalWaves.toLocaleString()}|{buildRatio(erecnisnI.totalWaves, castleGold(erecnisnI.castle) + taGold(erecnisnI.ta) + heroGold(erecnisnI.archer) + heroGold(erecnisnI.angel) + heroGold(erecnisnI.iceSorceress) + heroGold(erecnisnI.paladins) + heroGold(erecnisnI.succubus) + heroGold(erecnisnI.slingers) + heroGold(erecnisnI.sara) + heroGold(erecnisnI.worm))}|
+
+| 单位     | 等级                                 | 比例                                           |
+| -------- | ------------------------------------ | ---------------------------------------------- |
+|城堡     | {erecnisnI.castle.toLocaleString()}    | {ratio(erecnisnI.totalWaves, erecnisnI.castle)}    |
+|城弓     | {erecnisnI.ta.toLocaleString()} | {ratio(erecnisnI.totalWaves, erecnisnI.ta)} |
+|黄毛   | {erecnisnI.archer.toLocaleString()}    | {ratio(erecnisnI.totalWaves, erecnisnI.archer)}    |
+|天使   | {erecnisnI.angel.toLocaleString()}      | {ratio(erecnisnI.totalWaves, erecnisnI.angel)}      |
+|冰术士     | {erecnisnI.iceSorceress.toLocaleString()}  | {ratio(erecnisnI.totalWaves, erecnisnI.iceSorceress)}      |
+|骑士     | {erecnisnI.paladins.toLocaleString()}  | {ratio(erecnisnI.totalWaves, erecnisnI.paladins)}  |
+|魅魔     | {erecnisnI.succubus.toLocaleString()}  | {ratio(erecnisnI.totalWaves, erecnisnI.succubus)}  |
+|投矛     | {erecnisnI.slingers.toLocaleString()}  | {ratio(erecnisnI.totalWaves, erecnisnI.slingers)}  |
+|毒领   | {erecnisnI.sara.toLocaleString()}      | {ratio(erecnisnI.totalWaves, erecnisnI.sara)}      |
+|吸蓝虫   | {erecnisnI.worm.toLocaleString()}      | {ratio(erecnisnI.totalWaves, erecnisnI.worm)}      |
+
+# AD_DizzyDreamz - 城弓、火风女、炸弹人、魅魔、宙斯
+
+来源：[@LakuJK](https://www.youtube.com/@LakuJK)
+
+视频链接：[YouTube](https://www.youtube.com/watch?v=nrkbBOHL7lc)
+
+发布日期：2026-04-04
+
+收录日期：2026-07-14
+
+<iframe width="100%" height="468"
+  src="https://www.youtube.com/embed/nrkbBOHL7lc"
+  title="AD_DizzyDreamz"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+## 阵容图
+
+![AD_DizzyDreamz 阵容图](images/AD_DizzyDreamz_build.png)
+
+## 角色装备与属性
+
+|单位|面板|武器|饰品|
+|:----:|:----:|:----:|:----:|
+|白袍|CD: 6.64|红白 L|双白加强 E、CD 符文|
+|城弓|CD: 8.62|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+48.2%</span><br/>DAMAGE <span class="eq-g">+19.4%</span></span><br/><span class="eq-r">BOSS DAMAGE <span class="eq-g">+49%</span></span><br/><span class="eq-y">BONUS EXP SKILL LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>BOSS DAMAGE +15%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+44.9%</span><br/>DAMAGE <span class="eq-g">+18.4%</span><br/>CRITICAL DAMAGE <span class="eq-g">+47.3%</span></span><br/><span class="eq-y">HERO DAMAGE SKILL LV +1</span><br/><span class="eq-b">CAN BE EQUIPPED TO TOWN ARCHERS<br/>ATTACK SPEED +9.9%</span></span>|
+|宙斯|CD: 11.19|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+45.7%</span><br/>DAMAGE <span class="eq-g">+18.4%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.7</span> SECONDS</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">THUNDER BOLT +2<br/>LIGHTNING DAMAGE +7.5%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.3%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.7%</span></span><br/><span class="eq-r"><span class="eq-g">+2</span> CHAIN LIGHTNING<br/>(LIGHTNING TYPE ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">LIGHTNING DAMAGE +7.3%<br/>LIGHTNING DAMAGE +7.3%</span></span>|
+|魅魔|CD: 10.77|<span class="eq-bg"><span class="eq-w">ATTACK SPEED <span class="eq-g">+18.5%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.5%</span><br/>ATTACK SPEED <span class="eq-g">+18.3%</span></span><br/><span class="eq-b">ATTACK SPEED +8.0%<br/>ATTACK SPEED +9.4%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+10.0%</span><br/>CRITICAL DAMAGE <span class="eq-g">+44.2%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.4%</span></span><br/><span class="eq-b">ATTACK SPEED +10.0%<br/>ATTACK SPEED +9.8%</span></span>|
+|炸弹人|CD: 11.93|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+10.0%</span><br/>FIRE DAMAGE <span class="eq-g">+24.6%</span><br/>STUN CHANCE <span class="eq-g">+19.6%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">TNT DAMAGE +48%<br/>OWN BONUS GOLD +4.0%</span></span>|<span class="eq-bg"><span class="eq-w">FIRE DAMAGE <span class="eq-g">+22.3%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.5%</span></span><br/><span class="eq-r"><span class="eq-g">+1</span> ARROW<br/>(ARCHER TYPE ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">OWN BONUS GOLD +4.5%<br/>OWN BONUS GOLD +4.2%</span></span>|
+|火风女|CD: 5.71|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.5%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.2%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-2.0</span> SECONDS</span><br/><span class="eq-y">PERFECT GOLD SKILL LV +1</span><br/><span class="eq-b">TORNADO +1<br/>OWN BONUS GOLD +4.9%</span></span>|<span class="eq-bg"><span class="eq-w">DAMAGE <span class="eq-g">+19.0%</span><br/>COOLDOWN <span class="eq-g">-9.2%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-2.0</span> SECONDS</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">OWN BONUS GOLD +5.0%<br/>OWN BONUS GOLD +4.8%</span></span>|
+|青蛙|CD: 23.45<br/>蓝耗: 7%|单金 C|白金 C|
+|投矛|CD: 12.93|击退、减速、金 C|减速、白金 C|
+|骑士|CD: 12.93|击退、召唤时间、金 C|击退、减伤、金 C|
+
+## 结算面板
+
+![AD_DizzyDreamz 总伤害结算](images/AD_DizzyDreamz_analysis_1.png) ![AD_DizzyDreamz BOSS伤害结算](images/AD_DizzyDreamz_analysis_2.png)
+
+## 指数分析
+
+|总波数|指数|
+|:----:|:----:|
+|{ad_dizzydreamz.totalWaves.toLocaleString()}|{buildRatio(ad_dizzydreamz.totalWaves, castleGold(ad_dizzydreamz.castle) + taGold(ad_dizzydreamz.ta) + heroGold(ad_dizzydreamz.goblin) + heroGold(ad_dizzydreamz.windy) + heroGold(ad_dizzydreamz.zeus) + heroGold(ad_dizzydreamz.succubus) + heroGold(ad_dizzydreamz.paladins) + heroGold(ad_dizzydreamz.slingers) + heroGold(ad_dizzydreamz.worm))}|
+
+| 单位     | 等级                                 | 比例                                           |
+| -------- | ------------------------------------ | ---------------------------------------------- |
+|城堡     | {ad_dizzydreamz.castle.toLocaleString()}    | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.castle)}    |
+|城弓     | {ad_dizzydreamz.ta.toLocaleString()} | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.ta)} |
+|炸弹人   | {ad_dizzydreamz.goblin.toLocaleString()}    | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.goblin)}    |
+|火风女   | {ad_dizzydreamz.windy.toLocaleString()}      | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.windy)}      |
+|宙斯     | {ad_dizzydreamz.zeus.toLocaleString()}  | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.zeus)}      |
+|魅魔     | {ad_dizzydreamz.succubus.toLocaleString()}  | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.succubus)}  |
+|骑士     | {ad_dizzydreamz.paladins.toLocaleString()}  | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.paladins)}  |
+|投矛     | {ad_dizzydreamz.slingers.toLocaleString()}  | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.slingers)}  |
+|吸蓝虫   | {ad_dizzydreamz.worm.toLocaleString()}      | {ratio(ad_dizzydreamz.totalWaves, ad_dizzydreamz.worm)}      |
+
+# RB_Mana - 纯英
+
+来源：[@RedBridgeXgc](https://www.youtube.com/@RedBridgeXgc)
+
+视频链接：[YouTube](https://www.youtube.com/watch?v=NR1syRGBlik)
+
+发布日期：2026-06-30
+
+收录日期：2026-07-14
+
+<iframe width="100%" height="468"
+  src="https://www.youtube.com/embed/NR1syRGBlik"
+  title="RB_Mana"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+## 阵容图
+
+![RB_Mana 阵容图](images/RB_Mana_build.png)
+
+## 角色装备与属性
+
+|单位|面板|武器|饰品|
+|:----:|:----:|:----:|:----:|
+|白袍|CD: 5.68|L|E|
+|骑士|CD: 11.67|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.7%</span><br/>CRITICAL DAMAGE <span class="eq-g">+49.8%</span></span><br/><span class="eq-r">DAMAGE REDUCED BY <span class="eq-g">+23%</span><br/>(LEADER, SUMMONER ONLY)</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.0%<br/>ATTACK SPEED +8.7%</span></span>|<span class="eq-bg"><span class="eq-w">DAMAGE <span class="eq-g">+395</span><br/>CRITICAL CHANCE <span class="eq-g">+9.8%</span><br/></span><span class="eq-r">DAMAGE REDUCED BY <span class="eq-g">+22%</span><br/>(LEADER, SUMMONER ONLY)</span><br/><span class="eq-y">DAMAGE SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +8.4%</span></span>|
+|魅魔|CD: 10.77|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.8%</span><br/>CRITICAL DAMAGE <span class="eq-g">+44.6%</span><br/>CRITICAL DAMAGE <span class="eq-g">+48.6%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.5%<br/>ATTACK SPEED +8.3%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.8%</span><br/>DAMAGE <span class="eq-g">+395</span><br/>CRITICAL CHANCE <span class="eq-g">+9.0%</span></span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.0%<br/>ATTACK SPEED +9.8%</span></span>|
+|炸弹人|CD: 11.02|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.8%</span><br/>CRITICAL DAMAGE <span class="eq-g">+46.4%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.5%</span></span><br/><span class="eq-y">CRITICAL DAMAGE SKILL LV +1</span><br/><span class="eq-b">TNT DAMAGE +35%<br/>ATTACK SPEED +8.8%</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL DAMAGE <span class="eq-g">+47.7%</span><br/>CRITICAL CHANCE <span class="eq-g">+9.9%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> SECONDS</span><br/><span class="eq-b">ATTACK SPEED +8.8%<br/>ATTACK SPEED +8.2%</span></span>|
+|伊丽莎白|CD: 5.23<br/>蓝耗: 0|<span class="eq-bg"><span class="eq-w">COOLDOWN <span class="eq-g">-9.0%</span> -> <span class="eq-y">11.2%</span><br/>STUN CHANCE <span class="eq-g">+19.9%</span> -> <span class="eq-y">24.8%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.9</span> <span class="eq-w">-></span> <span class="eq-y">2.3</span> SECONDS</span><br/><span class="eq-y">ITEM QUALITY +24.7%</span><br/><span class="eq-b">9.9% CHANCE TO SUMMON A KRAKEN<br/>ON ATTACK.<br/>KRAKEN +2</span></span>|<span class="eq-bg"><span class="eq-w">CRITICAL CHANCE <span class="eq-g">+9.4%</span><br/>COOLDOWN <span class="eq-g">-9.9%</span></span><br/><span class="eq-r">COOLDOWN <span class="eq-g">-1.8</span> SECONDS</span><br/><span class="eq-y">COOLDOWN SKILL LV +1</span><br/><span class="eq-b">ATTACK SPEED +9.8%<br/>ATTACK SPEED +9.7%</span></span>|
+|青蛙|CD: 13.72<br/>蓝耗: 4.4%|双白加强|双白加强|
+|奇异石|CD: 6.32|红白金|E|
+
+## 结算面板
+
+![RB_Mana 总伤害结算](images/RB_Mana_analysis_1.png) ![RB_Mana BOSS伤害结算](images/RB_Mana_analysis_2.png) 
+
+## 指数分析
+
+|总波数|指数|
+|:----:|:----:|
+|{rb_mana.totalWaves.toLocaleString()}|{buildRatio(rb_mana.totalWaves, castleGold(rb_mana.castle) + heroGold(rb_mana.elizabeth) + heroGold(rb_mana.goblin) + heroGold(rb_mana.zeus) + heroGold(rb_mana.succubus) + heroGold(rb_mana.worm) + heroGold(rb_mana.paladins) + heroGold(rb_mana.slingers))}|
+
+| 单位     | 等级                                 | 比例                                           |
+| -------- | ------------------------------------ | ---------------------------------------------- |
+| 城堡     | {rb_mana.castle.toLocaleString()}    | {ratio(rb_mana.totalWaves, rb_mana.castle)}    |
+| 伊丽莎白 | {rb_mana.elizabeth.toLocaleString()} | {ratio(rb_mana.totalWaves, rb_mana.elizabeth)} |
+| 炸弹人   | {rb_mana.goblin.toLocaleString()}    | {ratio(rb_mana.totalWaves, rb_mana.goblin)}    |
+| 宙斯     | {rb_mana.zeus.toLocaleString()}      | {ratio(rb_mana.totalWaves, rb_mana.zeus)}      |
+| 魅魔     | {rb_mana.succubus.toLocaleString()}  | {ratio(rb_mana.totalWaves, rb_mana.succubus)}  |
+| 吸蓝虫   | {rb_mana.worm.toLocaleString()}      | {ratio(rb_mana.totalWaves, rb_mana.worm)}      |
+| 骑士     | {rb_mana.paladins.toLocaleString()}  | {ratio(rb_mana.totalWaves, rb_mana.paladins)}  |
+| 投矛     | {rb_mana.slingers.toLocaleString()}  | {ratio(rb_mana.totalWaves, rb_mana.slingers)}  |
