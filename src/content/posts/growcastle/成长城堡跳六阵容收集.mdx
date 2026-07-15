@@ -1,7 +1,7 @@
 ---
 title: 成长城堡跳六阵容收集
 published: 2026-07-14
-updated: 2026-07-15
+updated: 2026-07-16
 pinned: true
 description: "跳六阵容的收集，作为阵容构建的参考"
 tags: ["成长城堡", "Grow Castle", "攻略"]
@@ -76,6 +76,20 @@ export const lakujk = {
   archer: 567000,
   worm: 305000,
   paladins: 150000,
+}
+
+export const queencalypso = {
+  totalWaves: 14550000,
+  castle: 445000,
+  ta: 1760000,
+  sara: 510000,
+  succubus: 550000,
+  goblin: 515000,
+  archer: 500000,
+  worm: 210000,
+  paladins: 120000,
+  slingers: 120000,
+  angel: 120000,
 }
 
 export const erecnisnI = {
@@ -243,6 +257,71 @@ export const rb_mana = {
 
 ---
 
+# QueenCalypso
+
+**城弓 | 炸弹人 | 魅魔 | 黄毛 | 毒领**
+
+***与Laku一样的阵容，逐渐明白了它通用的道理。***
+
+- 来源：[@LakuJK](https://www.youtube.com/@LakuJK)
+
+- 视频链接：[YouTube](https://www.youtube.com/watch?v=N8kAUkX4lc0)
+
+- 发布日期：2026-05-06
+
+- 收录日期：2026-07-16
+
+- 更新日期：2026-07-16
+
+<iframe width="100%" height="468"
+  src="https://www.youtube.com/embed/N8kAUkX4lc0"
+  title="QueenCalypso"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+## 阵容图
+
+![QueenCalypso 阵容图](images/queencalypso_build.png)
+
+## 角色装备与属性
+
+|单位|面板|武器|饰品|
+|:----:|:----:|:----:|:----:|
+|白袍|CD: 5.84|<EquipDisplay w={['COOLDOWN -9.5%', 'ATTACK SPEED +19.4%']} r={['COOLDOWN -2.0 SECONDS']} b={['COOLDOWN SKILL LV +1', 'DAMAGE SKILL LV +1']} />|<EquipDisplay w={['PHYSICAL DAMAGE +24.4% -> 29.8%', 'COOLDOWN -9.5% -> 11.6%']} r={['COOLDOWN -2.0 -> 2.4 SECONDS']} y={['ITEM QUALITY +22.0%']} b={['CRITICAL CHANCE SKILL LV +1', 'HERO DAMAGE SKILL LV +1']} />|
+|城弓|CD: 8.62|<EquipDisplay w={['DAMAGE +19.8%', 'CRITICAL DAMAGE +49.4%']} r={['BOSS DAMAGE +49%']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +10.0%']} />|<EquipDisplay w={['CRITICAL DAMAGE +45.6%', 'CRITICAL DAMAGE +46.5%', 'DAMAGE +19.0%']} y={['ICE MASTERY SKILL LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'DAMAGE +5.0%']} />|
+|炸弹人|CD: 11.93|<EquipDisplay w={['CRITICAL CHANCE +9.4%', 'CRITICAL DAMAGE +49.0%', 'CRITICAL DAMAGE +48.0%']} y={['ARCHER SPD SKILL LV +1']} b={['TNT DAMAGE +49%', 'ATTACK SPEED +9.2%']} />|<EquipDisplay w={['CRITICAL CHANCE +10.0%', 'FIRE DAMAGE +22.5%', 'CRITICAL DAMAGE +48.3%']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +9.9%', 'ATTACK SPEED +9.9%']} />|
+|魅魔|CD: 10.77|<EquipDisplay w={['POISON DAMAGE +25.0%', 'ATTACK SPEED +18.2%', 'CRITICAL CHANCE +9.5%']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +9.6%', 'ATTACK SPEED +9.0%']} />|<EquipDisplay w={['CRITICAL CHANCE +9.7%', 'CRITICAL DAMAGE +49.9%', 'ATTACK SPEED +19.9']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +10.0%', 'ATTACK SPEED +9.9%']} />|
+|黄毛|CD: 10.77|<EquipDisplay w={['COLD DAMAGE +22.9%', 'CRITICAL DAMAGE +44.9%', 'CRITICAL CHANCE +9.0%']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +8.8%', 'ATTACK SPEED +9.2%']} />|<EquipDisplay w={['CRITICAL DAMAGE +48.9%', 'CRITICAL CHANCE +9.6%', 'CRITICAL CHANCE +9.2%']} y={['ICE MASTERY SKILL LV +1']} b={['ATTACK SPEED +9.9%', 'ATTACK SPEED +9.4%']} />|
+|毒领|CD: 4.31|<EquipDisplay w={['DAMAGE +18.9%', 'CRITICAL CHANCE +9.3%']} r={['BOSS DAMAGE +44%']} y={['COOLDOWN SKILL LV +1']} b={['BOSS DAMAGE +13%', 'POISONING DAMAGE STACKS +1']} />|<EquipDisplay w={['ATTACK SPEED +18.5%', 'CRITICAL DAMAGE +46.3%']} r={['BOSS DAMAGE +42%']} y={['COOLDOWN SKILL LV +1']} b={['POISONING DAMAGE STACKS +1', 'POISONING DAMAGE STACKS +1']} />|
+|天使|CD: 5.72|<EquipDisplay w={['COOLDOWN -9.8%', 'ATTACK SPEED +18.4%']} r={['COOLDOWN -2.0 SECONDS']} y={['LEADER, SUMMONED DEF SKILL LV +1']} b={['ATTACK SPEED +7.8%', 'ATTACK SPEED +7.2%']} />|<EquipDisplay w={['COOLDOWN -9.7%', 'KNOCKBACK CHANCE +18.2%']} r={['COOLDOWN -1.9 SECONDS']} y={['COOLDOWN SKILL LV +1']} b={['SKILL DURATION +0.20', 'SKILL DURATION +0.19']} />|
+|骑士|CD: 8.63|<EquipDisplay w={['COOLDOWN -9.9%', 'DAMAGE +19.4%']} r={['COOLDOWN -1.8 SECONDS']} y={['COOLDOWN SKILL LV +1']} b={['SLASH +1']} />|<EquipDisplay w={['COOLDOWN -9.3%', 'COLD DAMAGE +24.0%']} r={['DAMAGE REDUCED BY +23%', '(LEADER, SUMMONER ONLY)']} y={['COOLDOWN SKILL LV +1']} b={['SUMMONED HP +9.0%', 'SUMMONED HP +9.9%']} />|
+|青蛙|CD: 20.84<br/>蓝耗: 3.6%|-|-|
+
+## 结算面板
+
+![QueenCalypso 总伤害结算](images/queencalypso_analysis_1.png) ![QueenCalypso BOSS伤害结算](images/queencalypso_analysis_2.png)
+
+## 指数分析
+
+|总波数|指数|
+|:----:|:----:|
+|{queencalypso.totalWaves.toLocaleString()}|{buildRatio(queencalypso.totalWaves, castleGold(queencalypso.castle) + taGold(queencalypso.ta) + heroGold(queencalypso.sara) + heroGold(queencalypso.succubus) + heroGold(queencalypso.goblin) + heroGold(queencalypso.archer) + heroGold(queencalypso.worm) + heroGold(queencalypso.paladins) + heroGold(queencalypso.slingers) + heroGold(queencalypso.angel))}|
+
+| 单位     | 等级                                 | 比例                                           |
+| -------- | ------------------------------------ | ---------------------------------------------- |
+|城堡     | {queencalypso.castle.toLocaleString()}    | {ratio(queencalypso.totalWaves, queencalypso.castle)}    |
+|城弓     | {queencalypso.ta.toLocaleString()} | {ratio(queencalypso.totalWaves, queencalypso.ta)} |
+|炸弹人   | {queencalypso.goblin.toLocaleString()}      | {ratio(queencalypso.totalWaves, queencalypso.goblin)}      |
+|魅魔     | {queencalypso.succubus.toLocaleString()}  | {ratio(queencalypso.totalWaves, queencalypso.succubus)}  |
+|黄毛   | {queencalypso.archer.toLocaleString()}    | {ratio(queencalypso.totalWaves, queencalypso.archer)}    |
+|毒领   | {queencalypso.sara.toLocaleString()}      | {ratio(queencalypso.totalWaves, queencalypso.sara)}      |
+|天使   | {queencalypso.angel.toLocaleString()}      | {ratio(queencalypso.totalWaves, queencalypso.angel)}      |
+|投矛     | {queencalypso.slingers.toLocaleString()}  | {ratio(queencalypso.totalWaves, queencalypso.slingers)}  |
+|骑士     | {queencalypso.paladins.toLocaleString()}  | {ratio(queencalypso.totalWaves, queencalypso.paladins)}  |
+|吸蓝虫   | {queencalypso.worm.toLocaleString()}      | {ratio(queencalypso.totalWaves, queencalypso.worm)}      |
+
+---
+
 # erecnisnI
 
 **城弓 | 魅魔 | 冰术士 | 黄毛 | 毒领**
@@ -274,7 +353,7 @@ export const rb_mana = {
 |单位|面板|武器|饰品|
 |:----:|:----:|:----:|:----:|
 |白袍|CD: 5.88|<EquipDisplay w={['COOLDOWN -9.5%', '125 GOLD PER HIT']} r={['COOLDOWN -2.0 SECONDS']} b={['BONUS GOLD SKILL LV +1', 'COOLDOWN SKILL LV +1']}/>|<EquipDisplay w={['FIRE DAMAGE +22.5% -> 28.0%', 'COOLDOWN -9.4% -> 11.4%']} r={['COOLDOWN -1.9 -> 2.4 SECONDS']} y={['ITEM QUALITY +24.4%']} />|
-|城弓|CD: 8.62|<EquipDisplay w={['DAMAGE +18.8%', 'CRITICAL DAMAGE +49.3%', 'DAMAGE +18.8%']} y={['COOLDOWN SKILL LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +9.9%']} />|<EquipDisplay w={['CRITICAL DAMAGE +46.7%', 'CRITICAL DAMAGE +44.2%', 'DAMAGE +20.0%']} y={['ARCHER SPD LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +9.8%']} />|
+|城弓|CD: 8.62|<EquipDisplay w={['DAMAGE +18.8%', 'CRITICAL DAMAGE +49.3%', 'DAMAGE +18.8%']} y={['COOLDOWN SKILL LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +9.9%']} />|<EquipDisplay w={['CRITICAL DAMAGE +46.7%', 'CRITICAL DAMAGE +44.2%', 'DAMAGE +20.0%']} y={['ARCHER SPD SKILL LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +9.8%']} />|
 |魅魔|CD: 10.77|<EquipDisplay w={['CRITICAL DAMAGE +44.3%', 'ATTACK SPEED +18.6%']} r={['BOSS DAMAGE +48%']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +10.0%', 'ATTACK SPEED +10.0%']} />|<EquipDisplay w={['CRITICAL DAMAGE +48.0% -> 58.7%', 'ATTACK SPEED +19.3% -> 23.6%', 'ATTACK SPEED +19.7% -> 24.1%']} y={['ITEM QUALITY +22.4%']} b={['ATTACK SPEED +10.0%', 'ATTACK SPEED +10.0%']} />|
 |冰术士|CD: 2.33<br/>蓝耗: 0|<EquipDisplay w={['CRITICAL DAMAGE +47.4% -> 58.8%', 'COLD DAMAGE +24.8% -> 30.8%']} r={['COOLDOWN -1.9 -> 2.3 SECONDS']} y={['ITEM QUALITY +24.2%']} />|<EquipDisplay w={['COLD DAMAGE +22.4% -> 26.9%', 'COOLDOWN -9.7% -> 11.7%']} r={['COOLDOWN -1.7 -> 2.1 SECONDS']} y={['ITEM QUALITY +20.3%']} b={['CRITICAL CHANCE SKILL LV +1']} />|
 |黄毛|CD: 10.77|<EquipDisplay w={['DAMAGE +19.4%', 'CRITICAL DAMAGE +48.9%']} r={['FLYING DAMAGE +43%']} y={['COOLDOWN SKILL LV +1']} b={['CAN BE EQUIPPED TO TOWN ARCHERS', 'ATTACK SPEED +9.8%']} />|<EquipDisplay w={['CRITICAL CHANCE +10.0%', 'CRITICAL CHANCE +9.4%']} r={['+1 ARROW', '(ARCHER TYPE ONLY)']} y={['COOLDOWN SKILL LV +1']} b={['ATTACK SPEED +9.7%', 'ATTACK SPEED +9.9%']} />|
