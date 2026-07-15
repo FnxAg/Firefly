@@ -103,7 +103,9 @@ export const siteConfig: SiteConfig = {
 		// 相册页面开关
 		gallery: false,
 		// 追番页面开关
-		anime: false,
+		anime: true,
+		// 动态页面开关
+		dynamic: true,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
