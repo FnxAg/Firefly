@@ -10,9 +10,9 @@ export const analyticsConfig: AnalyticsConfig = {
 		// Umami Website ID
 		websiteId: "be376d44-332c-4cfc-b137-f30458801a54",
 		// Umami JS地址，支持使用自建
-		scriptUrl: "https://blog.fnxag.eu.org/script.js",
+		scriptUrl: "https://track.fnxag.eu.org/script.js",
 		// Umami 会话回放脚本地址，支持使用自建
-		replaysScriptUrl: "https://blog.fnxag.eu.org/recorder.js",
+		replaysScriptUrl: "https://track.fnxag.eu.org/recorder.js",
 		// 是否追踪出站链接
 		trackOutboundLinks: true,
 		// 是否收集浏览器性能指标
