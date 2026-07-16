@@ -112,10 +112,18 @@ const html =
 {html && <span set:html={html} />}
 
 <style is:global>
+	@font-face {
+		font-family: "Fusion Pixel";
+		src: url("/assets/fonts/fusion-pixel-10px-monospaced-zh_hans.otf") format("opentype");
+		font-display: swap;
+	}
+
 	.eq-bg {
 		background: #62594a;
 		display: inline-block;
 		padding: 2px 6px;
+		font-family: "Fusion Pixel", monospace;
+		/* font-size: 16px; */
 	}
 	.eq-w { color: #f9f7f6; }
 	.eq-r { color: #d53d45; }
