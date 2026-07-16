@@ -1,12 +1,12 @@
 ---
 export interface Props {
-	/** 白色词条 — 基础属性（DAMAGE, CRITICAL DAMAGE 等） */
+	/** 白色词条 */
 	w?: string[];
-	/** 红色词条 — 特殊修饰（BOSS DAMAGE, COOLDOWN SECONDS 等） */
+	/** 红色词条 */
 	r?: string[];
-	/** 黄色词条 — 技能等级、物品品质（COOLDOWN SKILL LV, ITEM QUALITY 等） */
+	/** 金色词条 */
 	y?: string[];
-	/** 蓝色词条 — 物品能力、额外加成（CAN BE EQUIPPED TO, ATTACK SPEED 等） */
+	/** 蓝色词条 */
 	b?: string[];
 }
 
@@ -21,14 +21,14 @@ function escapeHtml(str: string): string {
 }
 
 /**
- * 解析 w/r 词条中的数值和升级箭头，自动着色。
- * - 升级箭头 `->`：基础值绿色(eq-g)，升级值黄色(eq-y)
+ * 解析 w/r 词条中的数值和加强箭头，自动着色。
+ * - 加强箭头 `->`：基础值绿色(eq-g)，加强值黄色(eq-y)
  * - 值优先行（如 +1 ARROW）：值绿色
  * - 标准行（NAME VALUE SUFFIX）：值绿色
  * - 无匹配：原样输出
  */
 function parseLine(line: string, color: "w" | "r"): string {
-	// Step 1: 升级箭头模式 "NAME VALUE1 -> VALUE2 SUFFIX"
+	// Step 1: 加强箭头模式 "NAME VALUE1 -> VALUE2 SUFFIX"
 	const upgradeRe =
 		/^(.+?)\s+([+-]?\d+(?:\.\d+)?%?)\s*->\s*([+-]?\d+(?:\.\d+)?%?)(.*)$/;
 	const upMatch = line.match(upgradeRe);
@@ -43,7 +43,7 @@ function parseLine(line: string, color: "w" | "r"): string {
 		return `${escapeHtml(name)} <span class="eq-g">${escapeHtml(fromVal)}</span>${arrow}<span class="eq-y">${escapeHtml(toVal)}</span>${suffixText}`;
 	}
 
-	// Step 2: 值优先 + 升级箭头 "+VALUE1 -> VALUE2 SUFFIX"
+	// Step 2: 值优先 + 加强箭头 "+VALUE1 -> VALUE2 SUFFIX"
 	// 例如 "+1.9 -> 2.3 SEC SUMMONED TIME"
 	const vfUpgradeRe =
 		/^([+-]?\d+(?:\.\d+)?%?)\s*->\s*([+-]?\d+(?:\.\d+)?%?)(.*)$/;
@@ -112,18 +112,12 @@ const html =
 {html && <span set:html={html} />}
 
 <style is:global>
-	@font-face {
-		font-family: "Fusion Pixel";
-		src: url("/assets/fonts/fusion-pixel-10px-monospaced-zh_hans.otf") format("opentype");
-		font-display: swap;
-	}
 
 	.eq-bg {
 		background: #62594a;
 		display: inline-block;
 		padding: 2px 6px;
-		font-family: "Fusion Pixel", monospace;
-		/* font-size: 16px; */
+		line-height: 1.3;
 	}
 	.eq-w { color: #f9f7f6; }
 	.eq-r { color: #d53d45; }
