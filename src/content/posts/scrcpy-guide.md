@@ -4,7 +4,7 @@ published: 2025-07-27
 pinned: false
 description: "scrcpy简易使用手册"
 tags: ["scrcpy", "手册"]
-category: 手册
+category: scrcpy
 draft: false
 ---
 
