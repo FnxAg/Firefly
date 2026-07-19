@@ -1,9 +1,9 @@
 ---
-title: scrcpy简易使用手册
+title: scrcpy简易使用指南
 published: 2025-07-27
+updated: 2025-07-27
 pinned: false
-description: "scrcpy简易使用手册"
-tags: ["scrcpy", "手册"]
+tags: ["scrcpy", "指南"]
 category: scrcpy
 draft: false
 ---
