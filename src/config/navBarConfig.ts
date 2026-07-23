@@ -11,10 +11,10 @@ import {
 // ============================================================================
 const getDynamicNavBarConfig = (): NavBarConfig => {
 	// 基础导航栏链接
-	const links: NavBarLink[] = [
-		// 主页
-		LinkPresets.Home,
-	];
+	const links: NavBarLink[] = [];
+
+	// 主页
+	links.push(LinkPresets.Home);
 
 	// 文章及其子菜单
 	links.push({
@@ -33,39 +33,39 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 动态
-	links.push(LinkPresets.Dynamic);
-
 	//社交及其子菜单
 	links.push({
 		name: "社交",
 		url: "#",
 		icon: "material-symbols:group",
 		children: [
-			// 相册
+			// 友链
 			LinkPresets.Friends,
 
-			// 追番
+			// 留言
 			LinkPresets.Guestbook,
 		],
 	});
 
 	// 我的及其子菜单
-	// links.push({
-	// 	name: "我的",
-	// 	url: "#",
-	// 	icon: "material-symbols:person",
-	// 	children: [
-	// 		// 相册
-	// 		LinkPresets.Gallery,
+	links.push({
+		name: "我的",
+		url: "#",
+		icon: "material-symbols:person",
+		children: [
+			// 动态
+			LinkPresets.Dynamic,
+			
+			// // 相册
+			// LinkPresets.Gallery,
 
-	// 		// 追番
-	// 		LinkPresets.Anime,
+			// // 追番
+			// LinkPresets.Anime,
 
-	// 		// 番组计划
-	// 		LinkPresets.Bangumi,
-	// 	],
-	// });
+			// // 番组计划
+			// LinkPresets.Bangumi,
+		],
+	});
 
 	// // 关于及其子菜单
 	// links.push({
