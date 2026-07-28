@@ -21,6 +21,11 @@ export const siteConfig: SiteConfig = {
 	// 站点关键词
 	keywords: [
 		"博客",
+		"成长城堡",
+		"Grow Castle",
+		"FnxAg",
+		"Ariyara",
+		"FnxAg's Blog",
 	],
 
 	// 主题色
