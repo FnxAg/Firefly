@@ -6,6 +6,7 @@ pinned: false
 tags: ["scrcpy", "指南"]
 category: scrcpy
 draft: false
+slug: scrcpy/guide
 ---
 
 #### 快速上手

@@ -1,12 +1,13 @@
 ---
-title: 成长城堡 API 说明
-published: 2026-07-13 14:00:00
+title: 成长城堡自建 API 说明
+published: 2026-07-13
+updated: 2026-07-28
 pinned: false
 description: "自建 API 的使用说明"
 tags: ["成长城堡", "Grow Castle", "API"]
 category: 成长城堡
 draft: false
-slug: api-introduction
+slug: growcastle/api-introduction
 ---
 
 # 前言
@@ -24,6 +25,8 @@ https://xane.eu.org/gcapi
 ```
 
 前者是经过 Cloudflare 代理的，而后者是直接访问源服务器。两者的内容完全没有差别，只是对于国内的访问速度有所差异。因此，对于国内的用户，更建议使用**第一个** URL。
+
+---
 
 # API 说明
 
@@ -47,7 +50,7 @@ https://fnxag.eu.org/gcapi/season/{时间}/{对象类型}/{对象名称}
 | 对象类型 | `players` / `guilds`   | `players`：玩家<br />`guilds`：公会                                                          |
 | 对象名称 | 名称                   | 根据需要查询的对象，填写玩家或公会的游戏名称                                                 |
 
-> \[!NOTE] 提示
+> [!NOTE] 提示
 >
 > 如果玩家一直使用默认名称，如 `playerxxxxxxxx`，将无法查询。
 
@@ -88,6 +91,8 @@ https://fnxag.eu.org/gcapi/season/{时间}/{对象类型}/{对象名称}
 
 需要说明的是，在上面的成长城堡计算器中，请求时间为 `all`，并且对响应的处理，只解析了 `wph` 和 `season` 字段，其他的目前都未使用，可能未来也不会用到。
 
+---
+
 # 其他内容
 
 除了这种 API，还有一个实时更新的榜单，在这个地方：
@@ -96,4 +101,6 @@ https://fnxag.eu.org/gcapi/season/{时间}/{对象类型}/{对象名称}
 https://fnxag.eu.org/down_bot
 ```
 
-这是一个使用 [ntfy](https://ntfy.sh) 实现的通知服务器，我也把它拿来作为一个用于查看的工具了。只要它还在继续更新，那就说明还能继续用。
+这是一个使用 [ntfy](https://ntfy.sh) 实现的通知服务器，我也把它拿来作为一个用于查看的工具了。~~只要它还在继续更新，那就说明还能继续用。~~
+
+上面的内容已经不再更新了。

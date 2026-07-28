@@ -6,7 +6,7 @@ description: "游戏数值机制的简单分析"
 tags: ["成长城堡", "Grow Castle", "游戏机制"]
 category: 成长城堡
 draft: false
-slug: mechanic-explore
+slug: growcastle/mechanic-explore
 ---
 
 import CDCalculator from "CDCalculator.astro";
@@ -14,6 +14,8 @@ import CDCalculator from "CDCalculator.astro";
 # 前言
 
 当初在做计算表格的时候发现，在单位的属性面板上，有两种伤害，一种叫增加伤害 (increased damage)，另一种叫额外伤害 (more damage)，~~让我做表格做起来更麻烦了~~，于是在当时就简单测试了它的算法，最终的成果在那份计算表格中也有体现。
+
+---
 
 # 伤害计算
 
@@ -38,6 +40,8 @@ $$
 从这里就能看出来，提高 more damage 所带来的面板提升，是比 increased damage 来得更多的。
 
 所以，像技能树中的 more damage 技能点、宝物中的拳套、宝珠中的力量宝珠等，都遵循这套规则。而装备中的 damage 与 elemental damage 等，直接加到现有的 increased damage 面板中就行了。
+
+---
 
 # CD 计算
 
@@ -67,6 +71,8 @@ C = (C_{base} / (1.67 + C_s)) \times (1 - C_{ew}) - C_{er}
 $$
 
 这种算法也是挺抽象的，弯弯绕绕，无法理解作者的思路。
+
+---
 
 # CD 计算器
 
