@@ -1,7 +1,7 @@
 ---
 title: git 修改 commit message
-published: 2025-07-28
-updated: 2025-07-28
+published: 2026-07-28
+updated: 2026-07-28
 pinned: false
 tags: ["git"]
 category: git

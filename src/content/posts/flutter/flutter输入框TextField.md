@@ -1,7 +1,7 @@
 ---
 title: Flutter 输入框 TextField 笔记
-published: 2025-07-28
-updated: 2025-07-28
+published: 2026-07-28
+updated: 2026-07-28
 pinned: false
 tags: ["Flutter", "输入框", "TextField"]
 category: Flutter
