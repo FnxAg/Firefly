@@ -6,6 +6,7 @@ pinned: false
 tags: ["yt-dlp", "指南"]
 category: yt-dlp
 draft: false
+slug: yt-dlp/guide
 ---
 
 # 简介
