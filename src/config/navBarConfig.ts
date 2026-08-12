@@ -106,18 +106,18 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 				external: true,
 				icon: "fa7-brands:bilibili",
 			},
-			{
-				name: "ntfy",
-				url: "https://fnxag.eu.org",
-				external: true,
-				icon: "fa7-solid:link",
-			},
-			{
-				name: "OpenList",
-				url: "https://xane.eu.org",
-				external: true,
-				icon: "fa7-solid:link",
-			},
+			// {
+			// 	name: "ntfy",
+			// 	url: "https://fnxag.eu.org",
+			// 	external: true,
+			// 	icon: "fa7-solid:link",
+			// },
+			// {
+			// 	name: "OpenList",
+			// 	url: "https://xane.eu.org",
+			// 	external: true,
+			// 	icon: "fa7-solid:link",
+			// },
 		],
 	});
 
