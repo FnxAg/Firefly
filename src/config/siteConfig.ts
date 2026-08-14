@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "",
 
 	// 站点 URL
-	site_url: "https://blog.fnxag.eu.org",
+	site_url: "https://ariyara.cc",
 
 	// 站点描述
 	description:
