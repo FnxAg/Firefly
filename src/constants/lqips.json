@@ -2,9 +2,6 @@
   "src:assets/images/avatar.avif": "dcd8d5d1cecabea9a9",
   "public:gallery/firefly-2026/cover.avif": "7588a28a8f989e8d88",
   "public:gallery/firefly-2026/1.avif": "c8bca9dde6d2babfb5",
-  "public:assets/images/sponsor/wechat.png": "d5d5d5dad9d7dbd8cf",
-  "public:assets/images/sponsor/alipay.png": "8ebbde91bedf93c0e0",
-  "public:assets/images/ad/ad1.webp": "a1b8b68a8e918c8f93",
   "src:assets/images/DesktopWallpaper/1.png": "202e6d2231755766b3",
   "src:assets/images/MobileWallpaper/2.png": "3e4975485280848cc0",
   "src:content/posts/growcastle/images/lobby.png": "9c9b857f837d948e43",
@@ -41,5 +38,7 @@
   "src:content/posts/images/df-1.jpg": "353a35353b37343934",
   "src:content/posts/growcastle/images/syaaakr__build.png": "7f7e6c6266606f6c31",
   "src:assets/images/logo/firefly-light.png": "000000000000000000",
-  "src:assets/images/logo/firefly-dark.png": "ffffffffffffffffff"
+  "src:assets/images/logo/firefly-dark.png": "ffffffffffffffffff",
+  "src:assets/images/logo/logo.png": "9b6715a174237a4212",
+  "src:icons/favicon.png": "9b6715a174237a4212"
 }

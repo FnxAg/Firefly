@@ -1,0 +1,8 @@
+{
+	"fnxag/growcastlecalculator": {
+		"description": "A simple Android calculator with some tools for the mobile game \"Grow Castle\"",
+		"language": "Dart",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/108996024?v=4",
+		"license": "MIT"
+	}
+}

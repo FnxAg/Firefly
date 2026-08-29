@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "FnxAg",
 
 	// 个人签名
-	bio: "aka Ariyara / 一个普通人",
+	bio: "aka Ariyara",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
@@ -42,7 +42,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Email",
 			icon: "fa7-solid:envelope",
-			url: "mailto:2303499521@qq.com",
+			url: "mailto:fnxag@qq.com",
 			showName: false,
 		},
 		{
